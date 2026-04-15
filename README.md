@@ -53,4 +53,25 @@ Example:
   to export all availabile measurements.
 
 ```
+
+For convenience all currently available measurments are already exported to export directory of this repository, however to get the latetst measuremnts of [spinorama](https://github.com/pierreaubert/spinorama) you need to export it by your own.
+
 # Examples
+
+1. Display exported data of KEF LS50 Meta in FreqRespGraph.py:
+
+`python $HOME/FreqRespGraph/FreqRespGraph.py --csvdelimiter " " --ymin 30 --ymax 90 --title "CEA2034 KEF LS50 Meta" --files "$HOME/ExportSpinoramaData/export/KEF LS50 Meta/asr/CEA2034/*.txt"`
+![LS50_1](./examples/FreqLS50CEA2034.png)
+`python $HOME/FreqRespGraph/FreqRespGraph.py --csvdelimiter " " --ymin 30 --ymax 90 --title "Early Reflections KEF LS50 Meta" --files "$HOME/ExportSpinoramaData/export/KEF LS50 Meta/asr/Early Reflections/*.txt"`
+![LS50_2](./examples/FreqLS50EarlyReflections.png)
+`python $HOME/FreqRespGraph/FreqRespGraph.py --csvdelimiter " " --ymin 30 --ymax 90 --nolegend --title "Estimated In-Room Response KEF LS50 Meta" --files "$HOME/ExportSpinoramaData/export/KEF LS50 Meta/asr/Estimated In-Room Response.txt"`
+![LS50_3](./examples/FreqLS50Estimated.png)
+
+2. Display data of KEF LS50 Meta in REW (using: File->Import->Import frequency response):
+![REW](./examples/REWLS50CEA2034.png)
+3. Display estimated in-room response of all KEF and Klipsch measurements:
+   
+`python $HOME/FreqRespGraph/FreqRespGraph.py --csvdelimiter " " --alignmin 200 --alignmax 2000 --nolegend --title "Estimated In-Room Response KEF" --files "$HOME/ExportSpinoramaData/export/KEF*/*/Estimated In-Room Response.txt"`
+![KEF](./examples/FreqKEF.png)
+`python $HOME/FreqRespGraph/FreqRespGraph.py --csvdelimiter " " --alignmin 200 --alignmax 2000 --nolegend --title "Estimated In-Room Response Klipsch" --files "$HOME/ExportSpinoramaData/export/Klipsch*/*/Estimated In-Room Response.txt"`
+![KLIPSCH](./examples/FreqKlipsch.png)
