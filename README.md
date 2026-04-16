@@ -4,7 +4,33 @@ ExportSpinoramaData is a simple tool to export Spinorama data from [spinorama](h
 The expoted data (CEA2034, Early Refections and Estimated In-Room Response) can directly be imported into various tools, e.g. [REW](https://www.roomeqwizard.com/), [FreqRespGraph](https://github.com/rwhomeaudio/FreqRespGraph) or spreadsheet software for display and further processing.
 
 # Installation
+You need to install python, pip, git and most likely python venv first. After that you can clone the spinorama and ExportSpinoramaData git repsoitories, install the module dependencies and set PYTHONPATH.
 
+## Example installation on Ubuntu 24.04
+```
+cd
+sudo apt-get update
+sudo apt install git
+git clone https://github.com/pierreaubert/spinorama
+sudo apt install imagemagick npm
+sudo apt install python3-pip
+sudo apt install python3.12-venv
+python3 -m venv $HOME/venv
+cd spinorama
+$HOME/venv/bin/pip install -r requirements.txt
+$HOME/venv/bin/pip install jupyterlab
+$HOME/venv/bin/pip install altair
+locale -a
+sudo locale-gen en_US.UTF-8
+cd
+git clone https://github.com/rwhomeaudio/ExportSpinoramaData
+```
+## Example test run on Ubuntu 24.04
+```
+export PYTHONPATH=$HOME/spinorama/src:$HOME/spinorama/src/website:$HOME/spinorama
+cd ExportSpinoramaData
+$HOME/venv/bin/python ExportSpinoramaData.py -h
+```
 # Usage
 ```
 ExportSpinoramaData.py -h
