@@ -4,7 +4,7 @@ ExportSpinoramaData is a simple tool to export Spinorama data from [spinorama](h
 The expoted data (CEA2034, Early Refections and Estimated In-Room Response) can directly be imported into various tools, e.g. [REW](https://www.roomeqwizard.com/), [FreqRespGraph](https://github.com/rwhomeaudio/FreqRespGraph) or spreadsheet software for display and further processing.
 
 # Installation
-You need to install python, pip, git and most likely python venv first. After that you can clone the spinorama and ExportSpinoramaData git repsoitories, install the module dependencies and set PYTHONPATH.
+You need to install python, pip, git and most likely python venv first. After that you can clone the spinorama and ExportSpinoramaData git repositories, install the module dependencies and set PYTHONPATH.
 
 ## Example installation on Ubuntu 24.04
 ```
@@ -30,6 +30,25 @@ git clone https://github.com/rwhomeaudio/ExportSpinoramaData
 export PYTHONPATH=$HOME/spinorama/src:$HOME/spinorama/src/website:$HOME/spinorama
 cd ExportSpinoramaData
 $HOME/venv/bin/python ExportSpinoramaData.py -h
+```
+## Example installation on Windows
+- Download and install Python 3.X on your system: [https://www.python.org/downloads/](https://www.python.org/downloads/).
+- Install git command line client: [https://github.com/git-guides/install-git](https://github.com/git-guides/install-git)
+- Because spinorama repository currently contains a few files with invalid pathnames containing ":" or "|" we currently cannot use "git clone https://github.com/pierreaubert/spinorama".
+To workaround this download spinorama-develop.zip from [https://github.com/pierreaubert/spinorama](https://github.com/pierreaubert/spinorama) using "Code->Download ZIP" and extract it to %HOMEDRIVE%%HOMEPATH%\spinorama. Skip the reported files.
+```
+cd %HOMEDRIVE%%HOMEPATH%
+cd spinorama
+pip install -r requirements.txt
+cd %HOMEDRIVE%%HOMEPATH%
+git clone https://github.com/rwhomeaudio/ExportSpinoramaData
+```
+## Example test run on Windows
+```
+set PYTHONUTF8=1
+set PYTHONPATH=%HOMEDRIVE%%HOMEPATH%/spinorama/src;%HOMEDRIVE%%HOMEPATH%/spinorama/src/website;%HOMEDRIVE%%HOMEPATH%/spinorama
+cd ExportSpinoramaData
+python ExportSpinoramaData.py -h
 ```
 # Usage
 ```
