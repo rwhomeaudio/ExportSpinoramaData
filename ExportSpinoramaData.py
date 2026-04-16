@@ -1,9 +1,40 @@
+'''
+Prerequisites: 
+  1) https://github.com/pierreaubert/spinorama repository is cloned and required module dependencies are installed. 
+  2) PYTHONPATH is set to spinorama directories, e.g. if respository is cloned to home folder: 
+     export PYTHONPATH=$HOME/spinorama/src:$HOME/spinorama/src/website:$HOME/spinorama
+
+Example installation on Ubuntu 24.04:
+  cd
+  sudo apt-get update
+  sudo apt install git
+  git clone https://github.com/pierreaubert/spinorama
+  sudo apt install imagemagick npm
+  sudo apt install python3-pip
+  sudo apt install python3.12-venv
+  python3 -m venv $HOME/venv
+  cd spinorama
+  $HOME/venv/bin/pip install -r requirements.txt
+  $HOME/venv/bin/pip install jupyterlab
+  $HOME/venv/bin/pip install altair
+  locale -a
+  sudo locale-gen en_US.UTF-8
+  cd
+  git clone https://github.com/rwhomeaudio/ExportSpinoramaData
+
+Test run:
+  export PYTHONPATH=$HOME/spinorama/src:$HOME/spinorama/src/website:$HOME/spinorama
+  cd ExportSpinoramaData
+  $HOME/venv/bin/python ExportSpinoramaData.py -h
+'''
+ 
 import numpy as np
 import pandas as pd
 import plotly as plt
 import os
 import argparse
 import math
+import inspect
 
 from spinorama.load_spl_hv_txt import parse_graphs_speaker_spl_hv_txt
 from spinorama.load_klippel import parse_graphs_speaker_klippel
@@ -14,6 +45,10 @@ from spinorama.constant_paths import MEAN_MIN, MEAN_MAX, DEFAULT_FREQ_RANGE
 from datas import Measurement
 from datas.metadata import speakers_info
 from src.metaedit.api import get_speakers, get_speaker_metadata
+
+# To find the measurmenrs directroy of the spinorama repository we retrive the spinorama model path which gets loaded via PYTHONPATH environment variable
+m = inspect.getmodule(Measurement)
+measurement_path = os.path.dirname(m.__file__) + '/measurements'
 
 def export_measurement(speaker, version, absSPL):
     # Get measurment meta data
@@ -127,7 +162,7 @@ speaker = args.speaker
 version = args.version
 absSPL = args.absSPL
 
-measurement_path = './datas/measurements'
+#measurement_path = './datas/measurements'
 
 if speaker == '*' and version == '*':
     success = 0
