@@ -92,6 +92,7 @@ def export_measurement(speaker, version, absSPL):
 
     # Export files
     path=f"export/{speaker}/{version}/CEA2034/"
+    path = path.replace('|',' ').replace(':',' ')
     os.makedirs(path, exist_ok = True)
     filename = path + 'All.csv'
     df['CEA2034_unmelted'].to_csv(filename,index=False)
@@ -101,6 +102,7 @@ def export_measurement(speaker, version, absSPL):
             df['CEA2034_unmelted'][['Freq',idx]].to_csv(filename,index=False,sep=' ')
 
     path=f"export/{speaker}/{version}/Early Reflections/"
+    path = path.replace('|',' ').replace(':',' ')
     os.makedirs(path, exist_ok = True)
     filename = path + 'All.csv'
     df['Early Reflections_unmelted'].to_csv(filename,index=False)
@@ -110,6 +112,7 @@ def export_measurement(speaker, version, absSPL):
             df['Early Reflections_unmelted'][['Freq',idx]].to_csv(filename,index=False,sep=' ')
 
     path=f"export/{speaker}/{version}/"
+    path = path.replace('|',' ').replace(':',' ')
     os.makedirs(path, exist_ok = True)
     filename = path + 'Estimated In-Room Response.txt'
     df['Estimated In-Room Response_unmelted'].to_csv(filename,index=False,sep=' ')
