@@ -41,7 +41,7 @@ from spinorama.load_klippel import parse_graphs_speaker_klippel
 from spinorama.load_princeton import parse_graphs_speaker_princeton
 from spinorama.load_gll_hv_txt import parse_graphs_speaker_gll_hv_txt
 from spinorama.load import filter_graphs
-from spinorama.constant_paths import MEAN_MIN, MEAN_MAX, DEFAULT_FREQ_RANGE
+from spinorama.constant_paths import MEAN_MIN, MEAN_MAX, DEFAULT_FREQ_RANGE, SENSITIVITY_MIN_FREQ, SENSITIVITY_MAX_FREQ
 from datas import Measurement
 from datas.metadata import speakers_info
 from src.metaedit.api import get_speakers, get_speaker_metadata
@@ -80,7 +80,12 @@ def export_measurement(speaker, version, absSPL):
         raise Exception(f"Unsupported measurement format '{mformat}'")
 
     # Get dataframe
-    df = filter_graphs(speaker, h_spl, v_spl, MEAN_MIN, MEAN_MAX, mformat=mformat, mdistance=1)
+    mean_min = MEAN_MIN
+    mean_max = MEAN_MAX
+    if absSPL:
+        mean_min = SENSITIVITY_MIN_FREQ
+        mean_max = SENSITIVITY_MAX_FREQ
+    df = filter_graphs(speaker, h_spl, v_spl, mean_min, mean_max, mformat=mformat, mdistance=1)
 
     # Convert to absolute SPL
     if absSPL:
